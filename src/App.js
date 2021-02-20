@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [dieRollResult, setDieRollResult] = useState();
+  const [coinFlipResult, setCoinFlipResult] = useState('Not Flipped Yet');
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  useEffect(() => {
+    console.log(coinFlipResult);
+  }, [coinFlipResult]);
+
+  const rollDie = () => {
+    setDieRollResult(getRandomInt(6) + 1);
+  };
+
+  const flipCoin = () => {
+    setCoinFlipResult(getRandomInt(2));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <div>{dieRollResult ? dieRollResult : 'Not Rolled Yet'}</div>
+        <div>
+          <button onClick={rollDie}>Roll Die</button>
+        </div>
+      </div>
+      <div>{!!coinFlipResult ? 'Heads' : 'Tails'}</div>
+      <div>
+        <button onClick={flipCoin}>Flip Coin</button>
+      </div>
     </div>
   );
 }
