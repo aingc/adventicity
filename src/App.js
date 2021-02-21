@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import rollADie from 'roll-a-die';
 
 function App() {
   const [dieRollResult, setDieRollResult] = useState();
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="animCanvas">test</div>
       <div>
         <div>{dieRollResult ? dieRollResult : 'Not Rolled Yet'}</div>
         <div>
